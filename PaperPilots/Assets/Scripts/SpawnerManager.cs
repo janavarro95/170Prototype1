@@ -100,10 +100,14 @@ namespace Assets.Scripts
                 SpawnerObject spawn = getSpawnData(pair.Value);
                 if (spawn.spawnHandler.readyToTryToSpawn())
                 {
-                    int spawnLimit = random.Next(0, maxChanceSpawnLimit); //Get a number from 0-maxSpawnChance. If the object's spawn chance is higher than the maxSpawnChance it will sucessfully spawn. Otherwise it's timer gets reset.
-                    if (spawn.spawnHandler.SpawnChance > spawnLimit)
+                    int spawnLimit = random.Next(0, maxChanceSpawnLimit+1); //Get a number from 0-maxSpawnChance. If the object's spawn chance is higher than the maxSpawnChance it will sucessfully spawn. Otherwise it's timer gets reset.
+                    if (spawnLimit<spawn.spawnHandler.SpawnChance) //if the object's spawn chance is less than the cutoff, spawn it.
                     {
                         spawn.spawn(Position, new Vector3(0,0,-20f));
+                        spawn.spawnHandler.reset(random);
+                    }
+                    else
+                    {
                         spawn.spawnHandler.reset(random);
                     }
                 }
