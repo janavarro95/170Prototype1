@@ -31,6 +31,38 @@ namespace Assets.Scripts
         public Dictionary<string,GameObject> spawnableObjects;
 
 
+        public float X
+        {
+            get
+            {
+                return this.gameObject.transform.position.x;
+            }
+        }
+
+        public float Y
+        {
+            get
+            {
+                return this.gameObject.transform.position.y;
+            }
+        }
+
+        public float Z
+        {
+            get
+            {
+                return this.gameObject.transform.position.z;
+            }
+        }
+
+        public Vector3 Position
+        {
+            get
+            {
+                return new Vector3(X, Y, Z);
+            }
+        }
+
         /// <summary>
         /// The upper limit for the random spawner to check against. I.E 1000.
         /// </summary>
@@ -41,7 +73,7 @@ namespace Assets.Scripts
         /// </summary>
         public void Start()
         {
-            random = new Rand();
+            random = new Rand((int)X+(int)Y+(int)Z+GetHashCode());
             initializeSpawnChances();
             loadPrefabs();
 
@@ -71,14 +103,13 @@ namespace Assets.Scripts
                     int spawnLimit = random.Next(0, maxChanceSpawnLimit); //Get a number from 0-maxSpawnChance. If the object's spawn chance is higher than the maxSpawnChance it will sucessfully spawn. Otherwise it's timer gets reset.
                     if (spawn.spawnHandler.SpawnChance > spawnLimit)
                     {
-                        spawn.spawn(this.gameObject.transform.position, new Vector3(0,0,-20f));
+                        spawn.spawn(Position, new Vector3(0,0,-20f));
                         spawn.spawnHandler.reset(random);
                     }
                 }
                 else
                 {
                     spawn.spawnHandler.tick();
-                    Debug.Log(spawn.spawnHandler.ticksUntilSpawnChance);
                 }
             }
             //Debug.Log("Hello?");
