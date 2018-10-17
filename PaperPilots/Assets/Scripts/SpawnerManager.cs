@@ -30,6 +30,7 @@ namespace Assets.Scripts
         /// </summary>
         public Dictionary<string,GameObject> spawnableObjects;
 
+        public int speed = 20;
 
         public float X
         {
@@ -103,7 +104,7 @@ namespace Assets.Scripts
                     int spawnLimit = random.Next(0, maxChanceSpawnLimit+1); //Get a number from 0-maxSpawnChance. If the object's spawn chance is higher than the maxSpawnChance it will sucessfully spawn. Otherwise it's timer gets reset.
                     if (spawnLimit<spawn.spawnHandler.SpawnChance) //if the object's spawn chance is less than the cutoff, spawn it.
                     {
-                        spawn.spawn(Position, new Vector3(0,0,-20f));
+                        spawn.spawn(Position, new Vector3(0,0,-speed));
                         spawn.spawnHandler.reset(random);
                     }
                     else

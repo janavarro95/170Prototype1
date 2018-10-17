@@ -21,6 +21,34 @@ public class SpawnerObject : MonoBehaviour {
     public Vector3 velocity;
 
     /// <summary>
+    /// A list of predefined movement types.
+    /// </summary>
+    public enum MovementType
+    {
+        Straight,
+        SideToSide,
+        UpDown,
+        ClockwiseCircular,
+        CounterClockwiseCircular,
+        DownSlashDiagonal,
+        UpSlashDiagonal
+    }
+
+    /// <summary>
+    /// The type of movement for the object.
+    /// </summary>
+    public MovementType movementType;
+
+    /// <summary>
+    /// The amplitude of the waves.
+    /// </summary>
+    public float amplitude = 0.0f;
+    /// <summary>
+    /// The frequency, or period of the waves.
+    /// </summary>
+    public float frequency = 1;
+
+    /// <summary>
     /// The spawn handler for the game object.
     /// </summary>
     public SpawnTickHandler spawnHandler
@@ -50,8 +78,42 @@ public class SpawnerObject : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        this.transform.position += this.velocity*Time.deltaTime;
-        if (this.transform.position.z <= Camera.main.transform.position.z+ -20&& this.transform.position.z!= -999999999)
+        //this.transform.position += this.velocity*Time.deltaTime;
+
+        //Run regardless???
+        transform.position +=(this.velocity*Time.deltaTime); //Z movement.
+
+        //Sine X movement.
+        if (this.movementType == MovementType.SideToSide)
+        {
+            transform.position += new Vector3(Mathf.Sin(Time.time * frequency) * amplitude, 0.0f, 0.0f);
+        }
+
+        if (this.movementType == MovementType.UpDown)
+        {
+            transform.position += new Vector3(0.0f, Mathf.Cos(Time.time * frequency) * amplitude, 0.0f);
+        }
+
+        if (this.movementType == MovementType.ClockwiseCircular)
+        {
+            transform.position += new Vector3(Mathf.Sin(Time.time * frequency) * amplitude, Mathf.Cos(Time.time * frequency) * amplitude, 0.0f);
+        }
+
+        if (this.movementType == MovementType.CounterClockwiseCircular)
+        {
+            transform.position += new Vector3(-Mathf.Sin(Time.time * frequency) * amplitude, Mathf.Cos(Time.time * frequency) * amplitude, 0.0f);
+        }
+
+        if (this.movementType == MovementType.DownSlashDiagonal)
+        {
+            transform.position += new Vector3(-Mathf.Sin(Time.time * frequency) * amplitude, Mathf.Sin(Time.time * frequency) * amplitude, 0.0f);
+        }
+        if (this.movementType == MovementType.UpSlashDiagonal)
+        {
+            transform.position += new Vector3(Mathf.Sin(Time.time * frequency) * amplitude, Mathf.Sin(Time.time * frequency) * amplitude, 0.0f);
+        }
+
+        if (this.transform.position.z <= Camera.main.transform.position.z+ -20&& this.transform.position.z> -99999)
         {
             DestroyObject(this.gameObject);
         }
