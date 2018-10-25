@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollision : MonoBehaviour {
+public class PlaneCollision : MonoBehaviour {
 
     //REMEMBER THAT THE PLANE MUST HAVE A RIGID BODY!!!
 
@@ -22,6 +22,13 @@ public class PlayerCollision : MonoBehaviour {
     {
         //Can also use collision.transform.gameobject.name=="Something";
 
+        Debug.Log(collision.other.name);
+
+        if (collision.transform.gameObject.tag == "Player")
+        {
+            return;
+        }
+
         if (collision.transform.gameObject.tag == "Coin")
         {
             //Increase player score.
@@ -40,6 +47,12 @@ public class PlayerCollision : MonoBehaviour {
         if (collision.transform.gameObject.tag == "LoopBus")
         {
             //Remember to say thank you!
+        }
+
+        if (collision.transform.gameObject.tag == "Obstacle")
+        {
+            //Remember to say thank you!
+            Debug.Log("Do some obstacle work!");
         }
 
         Destroy(collision.transform.gameObject); //Destroy the other object we run into.

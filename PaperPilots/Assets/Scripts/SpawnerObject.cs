@@ -113,10 +113,12 @@ public class SpawnerObject : MonoBehaviour {
             transform.position += new Vector3(Mathf.Sin(Time.time * frequency) * amplitude, Mathf.Sin(Time.time * frequency) * amplitude, 0.0f);
         }
 
-        if (this.transform.position.z <= Camera.main.transform.position.z+ -20&& this.transform.position.z> -99999)
+        
+        if (this.gameObject.transform.position.z <= Camera.main.transform.position.z+ -20&& this.gameObject.transform.position.z> -99999)
         {
             DestroyObject(this.gameObject);
         }
+        
 	}
 
     /// <summary>
