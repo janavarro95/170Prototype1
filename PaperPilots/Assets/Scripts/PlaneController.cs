@@ -41,8 +41,6 @@ public class PlaneController : MonoBehaviour {
         for (int i = 0; i < zone.Length; i++) // add the vectors for each zone
         {
             currentZone = zone[i].GetComponent<FlightAdjustmentZoneController>();
-            print("Banana: ");
-            print(currentZone.getVector());
             rotationAmount += currentZone.getVector();
         }
   

@@ -206,12 +206,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 363115343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb0edd30c7b09da4aad87896d0f2d82b, type: 3}
+  m_Script: {fileID: 11500000, guid: bab6bc129b8d3f14590678b995247e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  key1: space
-  key2: left shift
+  id: 0
+  movement: {fileID: 0}
 --- !u!54 &363115345
 Rigidbody:
   m_ObjectHideFlags: 0

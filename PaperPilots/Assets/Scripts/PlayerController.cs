@@ -5,32 +5,60 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public PlayerHandler player;
+
     public float movementSpeed;
     public string key1;
     public string key2;
 
+
+    private void Start()
+    {
+        this.movementSpeed = 10f;
+    }
+
     void Update()
     {
         // Player Movement
-        float moveX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        float moveZ = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
-        transform.Translate(moveX, 0.0f, moveZ);
+        float moveX = Input.GetAxis("P" + player.id.ToString()+ " Horizontal") * movementSpeed * Time.deltaTime;
+        float moveZ = Input.GetAxis("P"+player.id.ToString()+" Vertical") * movementSpeed * Time.deltaTime;
+        player.gameObject.transform.Translate(moveX, 0.0f, moveZ);
     }
 
     public bool pullUp() // Function that returns whether the player is "pulling up"
     {
+        if (Input.GetButton(getPlayerID() + " Select"))
+        {
+            return true;
+        }
+        else return false;
+
+        /*
         if (Input.GetKey(key1))
             return true;
         else
             return false;
+            */
     }
 
     public bool pushDown() // Function that returns whether the player is "pushing down"
     {
+        if (Input.GetButton(getPlayerID() + " Deselect"))
+        {
+            return true;
+        }
+        else return false;
+        /*
         if (Input.GetKey(key2))
             return true;
         else
             return false;
+        */
+    }
+
+    public string getPlayerID()
+    {
+        return "P" + this.player.id.ToString();
     }
 }
 

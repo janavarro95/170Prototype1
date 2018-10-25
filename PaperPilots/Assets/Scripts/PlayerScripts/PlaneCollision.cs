@@ -22,7 +22,6 @@ public class PlaneCollision : MonoBehaviour {
     {
         //Can also use collision.transform.gameobject.name=="Something";
 
-        Debug.Log(collision.other.name);
 
         if (collision.transform.gameObject.tag == "Player")
         {
