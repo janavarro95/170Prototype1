@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "CharacterSelectionMenu") return; //Ignore Movement updates on Player if in menu.
         // Player Movement
         float moveX = Input.GetAxis("P" + player.id.ToString()+ " Horizontal") * movementSpeed * Time.deltaTime;
         float moveZ = Input.GetAxis("P"+player.id.ToString()+" Vertical") * movementSpeed * Time.deltaTime;

@@ -22,7 +22,7 @@ public class PlaneController : MonoBehaviour {
 	void Update () {
         // Move plane and player
         transform.Translate(shiftAmount);
-        player.transform.Translate(shiftAmount);
+        //player.transform.Translate(shiftAmount);
 
         updateRotationAmount();
 
