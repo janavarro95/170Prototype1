@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSelection : MonoBehaviour {
 
@@ -29,6 +30,8 @@ public class PlayerSelection : MonoBehaviour {
 
         checkForPlayerInstantiate();
         checkForPlayerColorChange();
+
+        checkForAllPlayersIn();
     }
 
     public void checkForPlayerInstantiate()
@@ -143,6 +146,14 @@ public class PlayerSelection : MonoBehaviour {
                 player4ColorChange = false;
             }
 
+        }
+    }
+
+    public void checkForAllPlayersIn()
+    {
+        if(Input.GetButton(getPlayerID(1)+" Start"))
+        {
+            SceneManager.LoadScene("Gameplay");
         }
     }
 

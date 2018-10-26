@@ -23,6 +23,6 @@ public class MainMenu_PlayButton : MonoBehaviour {
     public void onButtonClick()
     {
        
-        SceneManager.LoadScene("Gameplay");
+        SceneManager.LoadScene("CharacterSelectionMenu");
     }
 }
