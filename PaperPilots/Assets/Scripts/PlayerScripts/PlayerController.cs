@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(SceneManager.GetActiveScene().name);
         if (SceneManager.GetActiveScene().name == "CharacterSelectionMenu") return; //Ignore Movement updates on Player if in menu.
         // Player Movement
         float moveX = Input.GetAxis("P" + player.id.ToString()+ " Horizontal") * movementSpeed * Time.deltaTime;
